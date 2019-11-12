@@ -19,7 +19,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        ABCD
         <Timer
           isControlled={true}
           timeCount={15}

@@ -1,6 +1,7 @@
 import React from "react";
 import pauseImage from "./images/pause-button.png";
 import playImage from "./images/play-button.png";
+import stopImage from "./images/stop-button.png";
 
 class Timer extends React.Component {
   constructor(props) {
@@ -71,18 +72,6 @@ class Timer extends React.Component {
           : this.handleTimerStop();
       }
     );
-
-    // this.state.isTimerOn && this.state.currentTime > 0 ? this.handleTimerStart :
-    //   ? this.state.currentTime <= 0
-    //     ? this.handleTimerStop()
-    //     : this.handleTimerPause()
-    //   : this.handleTimerStart();
-
-    console.log(this.state.isTimerOn);
-
-    // !this.state.isTimerOn
-    //   ? clearInterval(this.intervalId)
-    //   : this.handleTimerStart();
   }
 
   render() {
@@ -105,8 +94,11 @@ class Timer extends React.Component {
             </span>
           )}
         </button>
+        &nbsp;
         <button className="timer-control" onClick={this.handleTimerStop}>
-          STOP
+          <span>
+            <img alt="STOP" src={stopImage} />
+          </span>
         </button>
       </div>
     );
