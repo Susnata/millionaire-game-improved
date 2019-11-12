@@ -25,7 +25,7 @@ class App extends React.Component {
           onStart={this.onStart}
           onPause={this.onPause}
           onStop={this.onStop}
-          controlledStatus={"START"}
+          controlledStatus={"PAUSE"}
         />
       </div>
       //<DisplayQuestion />

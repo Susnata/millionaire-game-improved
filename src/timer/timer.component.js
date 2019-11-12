@@ -20,11 +20,22 @@ class Timer extends React.Component {
     return this.props.isControlled;
   }
 
+  showControlledStatus() {
+    return this.props.controlledStatus;
+  }
+
   tick() {
     //debugger;
-    this.setState(state => ({
-      currentTime: state.currentTime - 1
-    }));
+    this.setState(
+      state => ({
+        currentTime: state.currentTime > 0 ? state.currentTime - 1 : 0
+      }),
+      () => {
+        if (this.state.currentTime === 0) {
+          this.handleTimerStop();
+        }
+      }
+    );
   }
 
   handleTimerStart() {
@@ -48,13 +59,30 @@ class Timer extends React.Component {
 
   componentDidMount() {
     //debugger;
-    if (this.isControlled()) {
+    if (!this.isControlled()) {
       this.setState(
         {
           isTimerOn: true
         },
         () => this.handleTimerStart()
       );
+    } else {
+      let controlledStatus = this.showControlledStatus();
+      if (controlledStatus) {
+        switch (controlledStatus) {
+          case "START":
+            this.handleTimerStart();
+            break;
+          case "PAUSE":
+            this.handleTimerPause();
+            break;
+          case "STOP":
+            this.handleTimerStop();
+            break;
+          default:
+            return;
+        }
+      }
     }
   }
 
@@ -76,6 +104,19 @@ class Timer extends React.Component {
 
   render() {
     //debugger;
+    // switch (this.props.controlledStatus) {
+    //   case "START":
+    //     this.handleTimerStart();
+    //     break;
+    //   case "PAUSE":
+    //     this.handleTimerPause();
+    //     break;
+    //   case "STOP":
+    //     this.handleTimerStop();
+    //     break;
+    //   default:
+    //     return;
+    // }
     let countdownTime = this.state.currentTime;
     // if (countdownTime === 0) {
     //   this.handleTimerStop();
