@@ -10,7 +10,9 @@ class Timer extends React.Component {
       isTimerOn: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.timerCountDown = this.timerCountDown.bind(this);
+    this.handleTimerStart = this.handleTimerStart.bind(this);
+    this.handleTimerPause = this.handleTimerPause.bind(this);
+    this.handleTimerStop = this.handleTimerStop.bind(this);
   }
 
   isControlled() {
@@ -24,48 +26,71 @@ class Timer extends React.Component {
     }));
   }
 
-  timerCountDown() {
+  handleTimerStart() {
+    this.props.onStart();
     this.intervalId = setInterval(() => this.tick(), 1000);
   }
 
+  handleTimerPause() {
+    this.props.onPause();
+    clearInterval(this.intervalId);
+  }
+
+  handleTimerStop() {
+    this.props.onStop();
+    clearInterval(this.intervalId);
+    this.setState({
+      isTimerOn: false,
+      currentTime: 0
+    });
+  }
+
   componentDidMount() {
-    debugger;
+    //debugger;
     if (this.isControlled()) {
       this.setState(
         {
           isTimerOn: true
         },
-        () => this.timerCountDown()
+        () => this.handleTimerStart()
       );
     }
   }
 
   handleClick() {
-    debugger;
+    //debugger;
     this.setState(
       prevState => ({
         isTimerOn: !prevState.isTimerOn
       }),
       () => {
-        !this.state.isTimerOn
-          ? clearInterval(this.intervalId)
-          : this.timerCountDown();
+        this.state.currentTime > 0
+          ? this.state.isTimerOn
+            ? this.handleTimerStart()
+            : this.handleTimerPause()
+          : this.handleTimerStop();
       }
     );
+
+    // this.state.isTimerOn && this.state.currentTime > 0 ? this.handleTimerStart :
+    //   ? this.state.currentTime <= 0
+    //     ? this.handleTimerStop()
+    //     : this.handleTimerPause()
+    //   : this.handleTimerStart();
 
     console.log(this.state.isTimerOn);
 
     // !this.state.isTimerOn
     //   ? clearInterval(this.intervalId)
-    //   : this.timerCountDown();
+    //   : this.handleTimerStart();
   }
 
   render() {
     //debugger;
     let countdownTime = this.state.currentTime;
-    if (countdownTime <= 0) {
-      clearInterval(this.intervalId);
-    }
+    // if (countdownTime === 0) {
+    //   this.handleTimerStop();
+    // }
     return (
       <div className="timer-container">
         <div className="timer-display">{countdownTime}</div>
@@ -79,6 +104,9 @@ class Timer extends React.Component {
               <img alt="Play" src={playImage} />
             </span>
           )}
+        </button>
+        <button className="timer-control" onClick={this.handleTimerStop}>
+          STOP
         </button>
       </div>
     );

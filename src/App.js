@@ -4,11 +4,30 @@ import Timer from "./timer/timer.component";
 import "./App.css";
 
 class App extends React.Component {
+  onStart() {
+    console.log("Congratulations! The timer has started!");
+  }
+
+  onPause() {
+    console.log("Don't worry, time has been paused for you!");
+  }
+
+  onStop() {
+    console.log("You missed the train, boss!");
+  }
+
   render() {
     return (
       <div>
         ABCD
-        <Timer isControlled={true} timeCount={15} />
+        <Timer
+          isControlled={true}
+          timeCount={15}
+          onStart={this.onStart}
+          onPause={this.onPause}
+          onStop={this.onStop}
+          controlledStatus={"START"}
+        />
       </div>
       //<DisplayQuestion />
     );
