@@ -1,0 +1,38 @@
+li:hover {
+  background-color: #f5f542;
+}
+
+@keyframes blinking {
+  0% {
+    background-color: #f5f542;
+  }
+  /* YOU CAN ADD MORE COLORS IN THE KEYFRAMES IF YOU WANT
+  50%{
+    background-color: #55d66b;
+    border: 5px solid #126620;
+  }
+  */
+  100% {
+    background-color: #42f5aa;
+  }
+}
+.matchedAnswer {
+  /* NAME | TIME | ITERATION */
+  animation: blinking 1s infinite;
+}
+
+.selectedAnswer {
+  background-color: #f5f542;
+}
+
+.correctAnswer {
+  background-color: #42f5aa;
+}
+
+.disabledOption {
+  pointer-events: none;
+}
+
+.disabledList {
+  cursor: not-allowed;
+}
