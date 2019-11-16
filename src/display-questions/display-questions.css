@@ -1,10 +1,47 @@
+.display-questions-container {
+  color: #fefdf8;
+  margin: auto;
+  text-align: center;
+}
+
+.display-question {
+  text-align: center;
+  border: 3px solid #ffe52e;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+ul {
+  list-style: none;
+}
+/* ol {
+  list-style-type: lower-alpha;
+} */
+
+li {
+  text-align: center;
+  border: 3px solid #ffe52e;
+  padding: 0.25em;
+  margin: 1em;
+  border-radius: 1em;
+  width: 300px;
+  /* display: inline-block; */
+  float: left;
+}
+
+li:nth-child(odd) {
+  clear: left;
+}
+
 li:hover {
   background-color: #f5f542;
+  color: black;
 }
 
 @keyframes blinking {
   0% {
     background-color: #f5f542;
+    color: black;
   }
   /* YOU CAN ADD MORE COLORS IN THE KEYFRAMES IF YOU WANT
   50%{
@@ -23,6 +60,7 @@ li:hover {
 
 .selectedAnswer {
   background-color: #f5f542;
+  color: black;
 }
 
 .correctAnswer {

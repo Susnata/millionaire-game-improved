@@ -12,6 +12,9 @@ class DisplayQuestion extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // if (nextProps.displayAnswer){
+    //   correctOption
+    // }
     if (nextProps.question !== this.props.question) {
       this.setState({
         selectedOption: -1
@@ -44,6 +47,7 @@ class DisplayQuestion extends React.Component {
   }
 
   render() {
+    const optionListIndex = ["A", "B", "C", "D"];
     //debugger;
     const options = this.props.answerOptions.map((option, index) => {
       let selectOption = this.handleAnswerSelection.bind(this, index);
@@ -53,15 +57,15 @@ class DisplayQuestion extends React.Component {
           className={this.getClassNameForOption(index)}
           onClick={selectOption}
         >
-          {option}
+          {optionListIndex[index]}. &nbsp; &nbsp; {option}
         </li>
       );
     });
 
     return (
       <div className="display-questions-container">
-        <p>{this.props.question}</p>
-        <ol type="A">{options}</ol>
+        <p className="display-question">{this.props.question}</p>
+        <ul>{options}</ul>
       </div>
     );
   }

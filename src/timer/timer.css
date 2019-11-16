@@ -1,0 +1,19 @@
+.timer-container {
+  clear: both;
+  width: 200px;
+  text-align: center;
+  margin: 230px auto 0;
+}
+
+.timer-display {
+  font-size: xx-large;
+  background-color: #ffe52e;
+  color: #572e2e;
+  /* border: 1px solid gray; */
+  border-radius: 70px;
+  width: 130px;
+  height: 130px;
+  padding: 45px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}

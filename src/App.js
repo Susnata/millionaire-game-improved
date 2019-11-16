@@ -1,6 +1,8 @@
 import React from "react";
+
 import DisplayQuestion from "./display-questions/display-questions.component";
 import Timer from "./timer/timer.component";
+
 import "./App.css";
 
 class App extends React.Component {
@@ -10,14 +12,16 @@ class App extends React.Component {
       currentQNo: 0,
       controlledStatus: "PAUSE",
       timeCount: 15,
-      isNextQuesBtnEnabled: false
+      isNextQuesBtnEnabled: false,
+      isTimeOver: false
     };
   }
 
   stopTimer = () => {
     this.setState({
       controlledStatus: "STOP",
-      isNextQuesBtnEnabled: true
+      isNextQuesBtnEnabled: true,
+      isTimeOver: true
     });
   };
 
@@ -52,13 +56,15 @@ class App extends React.Component {
       ? {}
       : { disabled: "disabled" };
     return (
-      <div>
+      <div className="app-container">
         <DisplayQuestion
           question={question}
           answerOptions={answerOptions}
           correctOption={correctOption}
           onAnswerSelection={this.stopTimer}
+          displayAnswer={this.isTimeOver}
         />
+
         <Timer
           isControlled={true}
           timeCount={this.state.timeCount}
@@ -73,7 +79,7 @@ class App extends React.Component {
           {...nextQuesBtnProps}
         >
           {" "}
-          Next Question
+          Next >>
         </button>
       </div>
     );
@@ -96,25 +102,25 @@ const QUESTIONBANK = [
   {
     questionNo: 3,
     question: "Which is the largest mammal on Earth?",
-    options: ["Blue Whale", "Elephant", "Humpbak Whale", "Grizzly Bear"],
-    correct: 1
+    options: ["Blue Whale", "Elephant", "Humpback Whale", "Grizzly Bear"],
+    correct: 0
   },
   {
     questionNo: 4,
     question: "Which is the national flower of India?",
     options: ["Rose", "Marigold", "Tulip", "Lotus"],
-    correct: 4
+    correct: 3
   },
   {
     questionNo: 5,
-    question: "Which is the fastest bird on planet?",
+    question: "Which is the smallest bird on planet?",
     options: [
       "Humming bird",
       "Diamond Firetail",
       "Pink Robin",
       "Scarlet Robin"
     ],
-    correct: 1
+    correct: 0
   }
 ];
 

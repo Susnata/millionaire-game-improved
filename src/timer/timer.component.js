@@ -4,6 +4,8 @@ import pauseImage from "../assets/images/pause-button.png";
 import playImage from "../assets/images/play-button.png";
 import stopImage from "../assets/images/stop-button.png";
 
+import "./timer.css";
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
